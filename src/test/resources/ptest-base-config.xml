@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ptest-server>
+	<hostname>localhost</hostname>
+	<port>8080</port>
+	<socketPoolSize>20</socketPoolSize>
+	
+	<contextHandlers>
+		<handler>
+			<path>/test</path>
+			<class>java.util.Observer</class>
+		</handler>
+	</contextHandlers>
+</ptest-server>
