@@ -156,7 +156,7 @@ public class PTestServerConfigurationParser {
 			
 			PTestServerConfiguration serverConfiguration = new PTestServerConfiguration(hostname, port, socketPoolSize);
 			
-			// step through handler configurations and extracht path and class
+			// step through handler configurations and extract path and class
 			for(int i = 0; i < handlerCfgs.getLength(); i++) {
 				Node handlerCfgNode = handlerCfgs.item(i);
 				String ctxPath = evaluateString(xpathExpressionHandlerPath, handlerCfgNode);
@@ -168,7 +168,8 @@ public class PTestServerConfigurationParser {
 				if(ctxClass == null || ctxClass.trim().isEmpty())
 					throw new ServerConfigurationFailedException("Invalid handler class found in configuration file contents");
 						
-				serverConfiguration.addContextHandlerSetting(ctxPath, new BasicNameValuePair(ctxPath, ctxClass));
+				// TODO additional configuration				
+				serverConfiguration.addContextHandlerSetting(ctxPath, new BasicNameValuePair("class", ctxClass));				
 			}
 			
 			return serverConfiguration;

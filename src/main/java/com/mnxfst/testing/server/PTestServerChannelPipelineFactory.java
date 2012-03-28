@@ -4,8 +4,6 @@
  */
 package com.mnxfst.testing.server;
 
-import java.util.Properties;
-
 import org.apache.log4j.Logger;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
@@ -14,6 +12,8 @@ import org.jboss.netty.handler.codec.http.HttpChunkAggregator;
 import org.jboss.netty.handler.codec.http.HttpContentCompressor;
 import org.jboss.netty.handler.codec.http.HttpRequestDecoder;
 import org.jboss.netty.handler.codec.http.HttpResponseEncoder;
+
+import com.mnxfst.testing.server.cfg.PTestServerConfiguration;
 
 /**
  * Channel pipeline factory implementation for mserver
@@ -24,10 +24,7 @@ public class PTestServerChannelPipelineFactory implements ChannelPipelineFactory
 
 	private static final Logger logger = Logger.getLogger(PTestServerChannelPipelineFactory.class.getName());
 	
-	private String hostname = null;
-	private int port = 0;
-	private int socketThreadPoolSize = 0;
-	private Properties serverContextProperties = null;
+	private PTestServerConfiguration serverContexSettings = null;
 
 	/**
 	 * Initializes the pipeline factory instance
@@ -35,14 +32,11 @@ public class PTestServerChannelPipelineFactory implements ChannelPipelineFactory
 	 * @param port
 	 * @param socketThreadPoolSize
 	 */
-	public PTestServerChannelPipelineFactory(String hostname, int port, int socketThreadPoolSize, Properties serverContextProperties) {
-		this.hostname = hostname;
-		this.port = port;
-		this.socketThreadPoolSize = socketThreadPoolSize;
-		this.serverContextProperties = serverContextProperties;
-		
+	public PTestServerChannelPipelineFactory(PTestServerConfiguration serverContextSettings) {
+		this.serverContexSettings = serverContextSettings;
+
 		if(logger.isDebugEnabled())
-			logger.debug("Successfully initializes channel pipeline factory on " + hostname + ":" + port);
+			logger.debug("Successfully initializes channel pipeline factory on " + (serverContextSettings != null ? serverContextSettings.getHostname() : null) + ":" + (serverContextSettings != null ? serverContextSettings.getPort() : -1));
 	}
 	
 	/**
@@ -55,7 +49,7 @@ public class PTestServerChannelPipelineFactory implements ChannelPipelineFactory
 		channelPipeline.addLast("aggregator", new HttpChunkAggregator(1048576));
 		channelPipeline.addLast("encoder", new HttpResponseEncoder());
 		channelPipeline.addLast("deflater", new HttpContentCompressor());
-		channelPipeline.addLast("handler", new PTestServerChannelUpstreamHandler(hostname, port, socketThreadPoolSize, serverContextProperties));
+		channelPipeline.addLast("handler", new PTestServerChannelUpstreamHandler(serverContexSettings));
 		
 		return channelPipeline;
 	}

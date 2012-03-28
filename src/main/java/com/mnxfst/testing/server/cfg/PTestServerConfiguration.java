@@ -126,6 +126,9 @@ public class PTestServerConfiguration implements Serializable {
 		Set<NameValuePair> settings = contextHandlerSettings.get(ctxPath);
 		if (settings == null)
 			settings = new HashSet<NameValuePair>();
+		
+		// ensure entry replacement since the add method just does nothing if the value is already contained 
+		settings.remove(keyValue);
 		settings.add(keyValue);
 		contextHandlerSettings.put(ctxPath, settings);
 	}

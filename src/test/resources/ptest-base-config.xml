@@ -8,7 +8,7 @@
 	<contextHandlers>
 		<handler>
 			<path>/test</path>
-			<class>java.util.Observer</class>
+			<class>com.mnxfst.testing.server.handler.PTestServerCfgContextHandler</class>
 		</handler>
 	</contextHandlers>
 </ptest-server>

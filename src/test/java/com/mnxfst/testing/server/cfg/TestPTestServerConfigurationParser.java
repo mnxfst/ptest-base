@@ -21,7 +21,6 @@ package com.mnxfst.testing.server.cfg;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -501,13 +500,29 @@ public class TestPTestServerConfigurationParser {
 		
 		Set<NameValuePair> ctxSettings = cfg.getContextHandlerSettings("/test");
 		Assert.assertNotNull("The settings must not be null", ctxSettings);
-		Assert.assertTrue("The element </test, java.lang.String> must be contained", ctxSettings.contains(new BasicNameValuePair("/test", "java.lang.String")));
+		Assert.assertTrue("The element <class, java.lang.String> must be contained", ctxSettings.contains(new BasicNameValuePair("class", "java.lang.String")));
 		Assert.assertFalse("The element </anotherTest, java.lang.Integer> must not be contained", ctxSettings.contains(new BasicNameValuePair("/anotherTest", "java.lang.Integer")));
 		
 		ctxSettings = cfg.getContextHandlerSettings("/anotherTest");
 		Assert.assertNotNull("The settings must not be null", ctxSettings);
 		Assert.assertFalse("The element </test, java.lang.String> must not be contained", ctxSettings.contains(new BasicNameValuePair("/test", "java.lang.String")));
-		Assert.assertTrue("The element </anotherTest, java.lang.Integer> must be contained", ctxSettings.contains(new BasicNameValuePair("/anotherTest", "java.lang.Integer")));
+		Assert.assertTrue("The element <class, java.lang.Integer> must be contained", ctxSettings.contains(new BasicNameValuePair("class", "java.lang.Integer")));
+	}
+	
+	@Test
+	public void testParseValidServerConfigurationAsSample() throws ServerConfigurationFailedException {
+		byte[] test = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><ptest-server><hostname>localhost</hostname><port>8080</port><socketPoolSize>20</socketPoolSize><contextHandlers><handler><path>/test</path><class>java.util.Observer</class></handler></contextHandlers></ptest-server>".getBytes();
+		PTestServerConfiguration cfg = new PTestServerConfigurationParser().parseServerConfiguration(test);
+		Assert.assertNotNull("The configuration object must not be null", cfg);
+		Assert.assertEquals("The hostname must be localhost", "localhost", cfg.getHostname());
+		Assert.assertEquals("The port must be 8080", 8080, cfg.getPort());
+		Assert.assertEquals("The socket pool size must be 20", 20, cfg.getSocketPoolSize());
+		Assert.assertEquals("The size of the context handler set must be 1", 1, cfg.getContextHandlerSettings().size());
+		
+		Set<NameValuePair> ctxSettings = cfg.getContextHandlerSettings("/test");
+		Assert.assertNotNull("The settings must not be null", ctxSettings);
+		Assert.assertTrue("The element <class, java.util.Observer> must be contained", ctxSettings.contains(new BasicNameValuePair("class", "java.util.Observer")));
+		
 	}
 
 }

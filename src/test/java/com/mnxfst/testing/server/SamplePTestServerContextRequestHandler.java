@@ -29,33 +29,30 @@ import com.mnxfst.testing.server.cfg.PTestServerConfiguration;
 import com.mnxfst.testing.server.exception.ContextInitializationFailedException;
 
 /**
- * Provides a common interface to all handler implementations processing context
- * specific requests
- * 
+ * Just does nothing but must be used for test cases
  * @author mnxfst
- * @since 21.03.2012
+ * @since 28.03.2012
  */
-public interface PTestServerContextRequestHandler {
+public class SamplePTestServerContextRequestHandler implements
+		PTestServerContextRequestHandler {
 
 	/**
-	 * Initializes the context request handler
-	 * 
-	 * @param properties
-	 * @throws ContextInitializationFailedException
+	 * @see com.mnxfst.testing.server.PTestServerContextRequestHandler#initialize(com.mnxfst.testing.server.cfg.PTestServerConfiguration)
 	 */
-	public void initialize(PTestServerConfiguration properties) throws ContextInitializationFailedException;
+	public void initialize(PTestServerConfiguration properties)
+			throws ContextInitializationFailedException {
+		// TODO Auto-generated method stub
+
+	}
 
 	/**
-	 * Handles the incoming request according to its implementation. There is no
-	 * further error handling provided by the surrounding
-	 * {@link PTestServerChannelUpstreamHandler} but must be implemented by the
-	 * request handler itself
-	 * 
-	 * @param httpRequest
-	 * @param requestParameters
-	 * @param keepAlive
-	 * @param event
+	 * @see com.mnxfst.testing.server.PTestServerContextRequestHandler#processRequest(org.jboss.netty.handler.codec.http.HttpRequest, java.util.Map, boolean, org.jboss.netty.channel.MessageEvent)
 	 */
-	public void processRequest(HttpRequest httpRequest, Map<String, List<String>> requestParameters, boolean keepAlive, MessageEvent event);
+	public void processRequest(HttpRequest httpRequest,
+			Map<String, List<String>> requestParameters, boolean keepAlive,
+			MessageEvent event) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ptestResponse>
+	<responseCode>1</responseCode>
+	<errors>
+		<error>
+			<code>uniqueIdentifier</code>
+			<message>additional message</message>
+		</error>
+	</errors>
+</ptestResponse>
