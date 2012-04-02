@@ -53,6 +53,16 @@
   	</developer>
   </developers>
 
+
+   <distributionManagement>
+        <repository>
+          <uniqueVersion>false</uniqueVersion>
+          <id>libs-release-local</id>
+          <name>DCE-Repository</name>
+          <url>http://localhost:8081/artifactory/repo1</url>
+          <layout>default</layout>
+        </repository>
+      </distributionManagement>
   <dependencies>
   
     <!-- testing -->
