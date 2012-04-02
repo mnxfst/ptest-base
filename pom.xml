@@ -4,6 +4,7 @@
   <artifactId>ptest-base</artifactId>
   <version>0.0.1</version>
   <name>ptest-base</name>
+  <packaging>jar</packaging>
   <description>Provides a base server implementation for handling incoming http requests</description>
   
   <organization>
