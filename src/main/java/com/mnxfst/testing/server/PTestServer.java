@@ -42,7 +42,7 @@ public class PTestServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		args = new String[]{"-cfg", "src/test/resources/ptest-base-config.xml"};
+//		args = new String[]{"-cfg", "src/test/resources/ptest-base-config.xml"};
 		try {
 			new PTestServer().startServer(args);
 		} catch(ServerConfigurationFailedException e) {

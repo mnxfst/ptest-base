@@ -110,5 +110,29 @@ public class PTestServerCfgContextHandler implements PTestServerContextRequestHa
 			future.addListener(ChannelFutureListener.CLOSE);
 	}
 	
+	/**
+	 * Parses out a single int value from the provided list of values. If the result is null, the list did not contain any value
+	 * or the value could not be parsed into a integer object   
+	 * @param values
+	 * @return
+	 */
+	protected Integer parseSingleIntValue(List<String> values)  {
+		
+		if(values == null)
+			return null;
+		
+		String tmp = values.get(0);
+		if(tmp == null || tmp.isEmpty())
+			return null;
+
+		try {
+			return Integer.valueOf(values.get(0));
+		} catch(NumberFormatException e) {
+			
+		}
+		
+		return null;
+	}
+	
 
 }

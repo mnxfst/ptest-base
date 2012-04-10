@@ -27,6 +27,7 @@ import org.jboss.netty.handler.codec.http.HttpRequest;
 
 import com.mnxfst.testing.server.cfg.PTestServerConfiguration;
 import com.mnxfst.testing.server.exception.ContextInitializationFailedException;
+import com.mnxfst.testing.server.exception.RequestProcessingFailedException;
 
 /**
  * Provides a common interface to all handler implementations processing context
@@ -55,7 +56,8 @@ public interface PTestServerContextRequestHandler {
 	 * @param requestParameters
 	 * @param keepAlive
 	 * @param event
+	 * @throws RequestProcessingFailedException thrown in case a critical error occurred which cannot be handled by simply sending an error response to the caller
 	 */
-	public void processRequest(HttpRequest httpRequest, Map<String, List<String>> requestParameters, boolean keepAlive, MessageEvent event);
+	public void processRequest(HttpRequest httpRequest, Map<String, List<String>> requestParameters, boolean keepAlive, MessageEvent event) throws RequestProcessingFailedException;
 
 }
