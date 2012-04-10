@@ -34,7 +34,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -49,8 +48,6 @@ import com.mnxfst.testing.server.exception.ServerConfigurationFailedException;
  */
 public class PTestServerConfigurationParser {
 
-	private static final Logger logger = Logger.getLogger(PTestServerConfigurationParser.class.getName());
-	
 	private static final String XML_ROOT = "ptest-server";
 	
 	private static final String XPATH_HOSTNAME = "/ptest-server/hostname";
