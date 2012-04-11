@@ -35,14 +35,14 @@ public class PTestServerResponseBuilder {
 	public static final String ERROR_CODE_NO_ASSOCIATED_CTX_HANDLER_FOUND = "no_ctx_handler_found";
 	public static final String ERROR_CODE_UNKNOWN_CONTEXT_PATH = "unknown_ctx_path";
 	
-	private static final String RESPONSE_XML_ROOT = "ptestResponse";
-	private static final String RESPONSE_XML_ERRORS_TAG = "errors";
-	private static final String RESPONSE_XML_ERROR_TAG = "error";
-	private static final String RESPONSE_XML_ERROR_KEY_TAG = "key";
-	private static final String RESPONSE_XML_ERROR_MSG_TAG = "message";
-	private static final String RESPONSE_XML_RESPONSE_CODE_TAG = "responseCode";
-	private static final String RESPONSE_XML_HOSTNAME_TAG = "hostname";
-	private static final String RESPONSE_XML_PORT_TAG = "port";
+	public static final String RESPONSE_XML_ROOT = "ptestResponse";
+	public static final String RESPONSE_XML_ERRORS_TAG = "errors";
+	public static final String RESPONSE_XML_ERROR_TAG = "error";
+	public static final String RESPONSE_XML_ERROR_KEY_TAG = "key";
+	public static final String RESPONSE_XML_ERROR_MSG_TAG = "message";
+	public static final String RESPONSE_XML_RESPONSE_CODE_TAG = "responseCode";
+	public static final String RESPONSE_XML_HOSTNAME_TAG = "hostname";
+	public static final String RESPONSE_XML_PORT_TAG = "port";
 	
 	public static String buildErrorResponse(String hostname, int port, Map<String, String> errors) {
 		
